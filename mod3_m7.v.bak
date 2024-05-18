@@ -1,0 +1,14 @@
+module mod3_m7(m7, h, m, l, rega_vs, rega_bs, a, b, c, d, e, f, g, rd1, rd2, rd3);
+	input m7, h, m, l, rega_vs, rega_bs;
+	output a, b, c, d, e, f, g, rd1, rd2, rd3;
+	
+	seg_a(m7, h, m, l, rega_vs, rega_bs, a);
+	seg_b(m7, h, m, l, rega_vs, rega_bs, b);
+	seg_c(m7, h, m, l, rega_vs, rega_bs, c);
+	seg_d(m7, h, m, l, rega_vs, rega_bs, d);
+	seg_e(m7, h, m, l, rega_bs, e);
+	seg_f(m7, h, m, l, rega_vs, rega_bs, f);
+	seg_g(m7, h, m, l, rega_vs, rega_bs, g);
+	rd_123(m7, rd1, rd2, rd3);
+	
+endmodule

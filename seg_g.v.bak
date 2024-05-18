@@ -1,0 +1,26 @@
+module seg_g(m7, h, m, l, rega_vs, rega_bs, g);
+	input m7, h, m, l, rega_vs, rega_bs;
+	output g;
+	
+	wire not_m71, not_h1, not_m1, not_h2, not_m2, not_rega_vs1, not_rega_bs1, not_rega_vs2, not_rega_bs2, and_1, and_2, and_3;
+	
+	// Declarando as portas not
+	not not1 (not_m71, m7);
+	not not2 (not_h1, h);
+	not not3 (not_m1, m);
+	not not4 (not_h2, h);
+	not not5 (not_m2, m);
+	not not6 (not_rega_bs1, rega_bs);
+	not not7 (not_rega_vs1, rega_vs);
+	not not8 (not_rega_bs2, rega_bs);
+	not not9 (not_rega_vs2, rega_vs);
+	
+	// Declarando as portas and
+	and and1 (and_1, not_m71, not_h1, not_m1);
+	and and2 (and_2, not_h2, not_m2, not_rega_vs1, not_rega_bs1);
+	and and3 (and_3, m7, m, l, not_rega_vs2, not_rega_bs2);
+	
+	// Declarando a porta or para a saída b
+	or or1 (g, and_1, and_2, and_3);
+	
+endmodule

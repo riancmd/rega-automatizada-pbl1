@@ -1,0 +1,17 @@
+module rd_123(m7, rd1, rd2, rd3);
+	input m7;
+	output rd1, rd2, rd3;
+	
+	wire not_m71, not_m72, not_m73;
+
+	// Declarando a porta and
+	not not1 (not_m71, m7);
+	not not2 (not_m72, m7);
+	not not3 (not_m73, m7);
+	
+	// Declarando as portas and
+	and and1 (rd1, not_m71, m7);
+	and and2 (rd2, not_m72, m7);
+	and and3 (rd3, not_m73, m7);
+	
+endmodule

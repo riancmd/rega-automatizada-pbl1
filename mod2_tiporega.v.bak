@@ -1,0 +1,53 @@
+/*Autores: Edgar Rodrigo, Jimy Cerqueira, Rian Silva
+Componente Curricular: TEC498 - MI Projetos de Circuitos Digitais
+Concluido em: 10/05/2024
+Declaro que este código foi elaborado por mim de forma individual e não contém nenhum
+trecho de código de outro colega ou de outro autor, tais como provindos de livros e
+apostilas, e páginas ou documentos eletrônicos da Internet. Qualquer trecho de código
+de outra autoria que não a minha está destacado com uma citação para o autor e a fonte
+do código, e estou ciente que estes trechos não serão considerados para fins de avaliação.*/
+
+module mod2_tiporega(h, m, l, us, ua, t, vs, bs, rega_vs, rega_bs);
+	input h, m, l, us, ua, t;
+	output vs, bs, rega_vs, rega_bs;
+	
+	wire not_us1, not_h1, not_m1, not_us2, not_h2, not_us3, not_ua1, not_us4, not_ua2, not_us5, not_t1, and_1, and_2, and_3, and_4, and_5;
+	
+	/*Circuito de Vs
+//	Declarando as portas not*/
+	not not1 (not_us1, us);
+	not not2 (not_h1, h);
+	not not3 (not_m1, m);
+	not not4 (not_us2, us);
+	
+	//Declarando as portas and
+	and and1 (and_1, m, l, not_us1, ua, t);
+	and and2 (and_2, not_h1, not_m1, not_us2, l);
+	
+	//Declarando a porta or para a saída Vs
+	or or1 (vs, and_1, and_2);
+	
+	/*Circuito de Bs
+	Declarando as portas not*/
+	not not5 (not_h2, h);
+	not not6 (not_us3, us);
+	not not7 (not_ua1,ua);
+	not not8 (not_us4, us);
+	not not9 (not_ua2, ua);
+	not not10 (not_us5, us);
+	not not11 (not_t1, t);
+	
+	//Declarando as portas and
+	and and3 (and_3, not_h2, not_us3, not_ua1, l);
+	and and4 (and_4, not_us4, not_ua2, l);
+	and and5 (and_5, not_us5, not_t1, m, l);
+	
+	//Declarando a porta or para a saída Bs
+	or or2 (bs, and_3, and_4, and_5);
+	
+	/*Circuito que envia tipo de rega para o m7*/
+	
+	or or3 (rega_vs, and_1, and_2);
+	or or4 (rega_bs, and_3, and_4, and_5);
+	
+endmodule
